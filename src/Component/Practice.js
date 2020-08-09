@@ -1,45 +1,30 @@
-import React, { Component } from "react";
-import { Card, } from "@material-ui/core";
-import { CardText, CardTitle, } from 'reactstrap';
+import React, { Component } from 'react';
 import demo from "./cute-girl-baby.jpg";
-import demo1 from './image.jpg';
-import demo2 from './Image.jpg';
+import Card from '@material-ui/core/Card'
 
-var data = [{
-    name: 'shubhangi',
-    description: 'She is a Programmer. Now she is working in React.js',
-    profile: demo
-},{
-    name: 'Rupa',
-    description: 'She is a Programmer. now she is working in React.js. She is a good learner.',
-    profile: demo1
-}, {
-    name: 'komal',
-    description: 'She is a Programmer. now she is working in Node.js.',
-    profile: demo2
-}
-]
-
-class CardDetail extends Component {
+class App extends Component {
     render() {
+        const name = 'Shubhangi';
+        const description = 'She is a Programmer. Now she is working in React.js';
+        const profile = demo;
 
         return (
             <div>
-                {data.map((item, i) =>
-                    (<Card key={i} style={{ height: 350, width: '20%', marginTop: '10%', marginLeft: '40%', border: '1px solid black', }}>
-                        <div>
-                            <img src={item.profile}
-                                style={{
-                                    width: "170px", borderRadius: "50%", height: "170px", cursor: "pointer", marginTop: '5%'
-                                }} alt="" />
-                        </div>
-                        <CardTitle><h1>{item.name}</h1></CardTitle>
-                        <CardText>{item.description}</CardText>
-                    </Card>)
-                )}
+                <Card style={{ height: 350, width: '20%', marginTop: '10%', marginLeft: '40%', border: '1px solid black', }}>
+                    <Profile profile={profile} />
+                    <Name name={name} />
+                    <Description description={description} />
+                </Card>
             </div>
-        )
-    };
+        );
+    }
 }
 
-export default (CardDetail); 
+const Name = props => <h1>{props.name}</h1>;
+const Description = props => <p>{props.description}</p>;
+const Profile = props => <img src={props.profile} style={{
+    width: "170px", borderRadius: "50%", height: "170px", cursor: "pointer", marginTop: '5%'
+}} alt="" />
+
+
+export default App;
